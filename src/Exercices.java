@@ -70,7 +70,7 @@ public class Exercices {
         Utilisez les streams pour trouver tous les éléments dont le carré est supérieur à 50. Retournez une liste.
          */
         liste = liste.stream()
-                .map((n) -> n*n).filter((n) -> n > 50)
+                .filter((n) -> n * n > 50)
                 .collect(Collectors.toList());
         return liste;
     }
@@ -81,9 +81,9 @@ public class Exercices {
          les multiplie par 9.
          */
         liste = liste.stream()
-                .map((n) -> n*9).map((n) -> n.toString())
-                .map((str) -> str.substring(0,0))
-                .map((str) -> Integer.parseInt(str))
+                .map((n) -> n*9)
+                .map((n) -> String.valueOf(n).charAt(0))
+                .map((str) -> Integer.parseInt(String.valueOf(str)))
                 .collect(Collectors.toList());
         return liste;
     }
@@ -92,9 +92,9 @@ public class Exercices {
         /*
         Créez un stream infini d'entiers et utilisez le pour trouver les 10 premiers nombres divisibles par 3 et par 7.
          */
-        List<Integer> intlist = IntStream.iterate(0,(n) -> n++)
-                .boxed()
+        List<Integer> intlist = IntStream.iterate(1,(n) -> n + 1)
                 .filter((n) -> n % 3 == 0 && n % 7 == 0)
+                .boxed()
                 .limit(10)
                 .collect(Collectors.toList());
         return intlist;
@@ -104,11 +104,11 @@ public class Exercices {
         /*
         Générez la liste des 20 premiers carrés parfaits grâce à un stream infini.
          */
-        List<Integer> intList = IntStream.iterate(0, (n) -> n++)
-                .boxed()
+        List<Integer> intList = IntStream.iterate(1, (n) -> n + 1)
                 .filter((n) -> n % Math.sqrt(n) == 0)
                 .limit(20)
+                .boxed()
                 .collect(Collectors.toList());
-        return Arrays.asList();
+        return intList;
     }
 }
